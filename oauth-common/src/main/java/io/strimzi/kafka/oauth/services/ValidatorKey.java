@@ -247,6 +247,8 @@ public class ValidatorKey {
         private final String validTokenType;
         private final String clientId;
         private final String clientSecret;
+        private final String username;
+        private final String password;
 
         private final String configIdHash;
 
@@ -270,6 +272,8 @@ public class ValidatorKey {
                                   String validTokenType,
                                   String clientId,
                                   String clientSecret,
+                                  String username,
+                                  String password,
                                   int connectTimeout,
                                   int readTimeout,
                                   boolean enableMetrics) {
@@ -295,6 +299,8 @@ public class ValidatorKey {
             this.validTokenType = validTokenType;
             this.clientId = clientId;
             this.clientSecret = clientSecret;
+            this.username = username;
+            this.password = password;
 
             this.configIdHash = IOUtil.hashForObjects(super.getConfigIdHash(),
                     introspectionEndpoint,

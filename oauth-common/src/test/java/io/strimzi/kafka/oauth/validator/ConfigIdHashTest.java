@@ -46,6 +46,8 @@ public class ConfigIdHashTest {
                 null,
                 "example-client",
                 "example-client-secret",
+                null,
+                null,
                 60,
                 60,
                 true);

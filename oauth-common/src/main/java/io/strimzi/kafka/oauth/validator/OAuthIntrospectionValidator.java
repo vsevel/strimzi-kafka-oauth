@@ -56,6 +56,8 @@ public class OAuthIntrospectionValidator implements TokenValidator {
     private final String validTokenType;
     private final String clientId;
     private final String clientSecret;
+    private final String username;
+    private final String password;
     private final String audience;
     private final JsonPathFilterQuery customClaimMatcher;
     private final SSLSocketFactory socketFactory;
@@ -87,6 +89,8 @@ public class OAuthIntrospectionValidator implements TokenValidator {
      * @param validTokenType The optional token type enforcement - only the specified token type is accepted as valid
      * @param clientId The clientId of the OAuth2 client representing this Kafka broker - needed to authenticate to the introspection endpoint
      * @param clientSecret The secret of the OAuth2 client representing this Kafka broker - needed to authenticate to the introspection endpoint
+     * @param username The password grant username of the OAuth2 client representing this Kafka broker - needed to authenticate to the introspection endpoint
+     * @param password The password grant password of the OAuth2 client representing this Kafka broker - needed to authenticate to the introspection endpoint
      * @param audience The optional audience check. If specified, the 'aud' attribute of the introspection endpoint response needs to contain the configured clientId
      * @param customClaimCheck The optional JSONPath filter query for additional custom attribute checking
      * @param connectTimeoutSeconds The maximum time to wait for connection to authorization server to be established (in seconds)
@@ -106,6 +110,8 @@ public class OAuthIntrospectionValidator implements TokenValidator {
                                        String validTokenType,
                                        String clientId,
                                        String clientSecret,
+                                       String username,
+                                       String password,
                                        String audience,
                                        String customClaimCheck,
                                        int connectTimeoutSeconds,
@@ -132,6 +138,8 @@ public class OAuthIntrospectionValidator implements TokenValidator {
         this.validTokenType = validTokenType;
         this.clientId = clientId;
         this.clientSecret = clientSecret;
+        this.username = username;
+        this.password = password;
         this.audience = audience;
         this.customClaimMatcher = parseCustomClaimCheck(customClaimCheck);
 
@@ -158,6 +166,8 @@ public class OAuthIntrospectionValidator implements TokenValidator {
                     + "\n    validTokenType: " + validTokenType
                     + "\n    clientId: " + clientId
                     + "\n    clientSecret: " + mask(clientSecret)
+                    + "\n    username: " + username
+                    + "\n    password: " + mask(password)
                     + "\n    audience: " + audience
                     + "\n    customClaimCheck: " + customClaimCheck
                     + "\n    connectTimeoutSeconds: " + connectTimeoutSeconds
